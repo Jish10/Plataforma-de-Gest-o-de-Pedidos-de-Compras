@@ -1,0 +1,53 @@
+erDiagram
+    users ||--o{ purchase_orders : cria
+    suppliers ||--o{ products : fornece
+    suppliers ||--o{ purchase_orders : recebe
+    purchase_orders ||--o{ purchase_order_items : contem
+    products ||--o{ purchase_order_items : aparece_em
+
+    users {
+        int id PK
+        string nome
+        string email
+        string departamento
+        timestamp created_at
+    }
+
+    suppliers {
+        int id PK
+        string nome
+        string email
+        string telefone
+        string endereco
+        timestamp created_at
+    }
+
+    products {
+        int id PK
+        string nome
+        string descricao
+        decimal preco_unitario
+        int estoque
+        int supplier_id FK
+        timestamp created_at
+    }
+
+    purchase_orders {
+        int id PK
+        int user_id FK
+        int supplier_id FK
+        date data_pedido
+        string status
+        text observacoes
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    purchase_order_items {
+        int id PK
+        int purchase_order_id FK
+        int product_id FK
+        int quantidade
+        decimal preco_unitario
+        timestamp created_at
+    }

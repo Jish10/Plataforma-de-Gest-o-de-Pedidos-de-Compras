@@ -1,0 +1,46 @@
+Table users {
+  id integer [pk, increment]
+  nome varchar(120) [not null]
+  email varchar(120) [not null, unique]
+  departamento varchar(80) [not null]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table suppliers {
+  id integer [pk, increment]
+  nome varchar(120) [not null]
+  email varchar(120) [not null, unique]
+  telefone varchar(30) [not null]
+  endereco varchar(180) [not null]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table products {
+  id integer [pk, increment]
+  nome varchar(120) [not null]
+  descricao text
+  preco_unitario numeric(12,2) [not null]
+  estoque integer [not null, default: 0]
+  supplier_id integer [not null, ref: > suppliers.id]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table purchase_orders {
+  id integer [pk, increment]
+  user_id integer [not null, ref: > users.id]
+  supplier_id integer [not null, ref: > suppliers.id]
+  data_pedido date [not null]
+  status varchar(20) [not null, default: 'pendente']
+  observacoes text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table purchase_order_items {
+  id integer [pk, increment]
+  purchase_order_id integer [not null, ref: > purchase_orders.id]
+  product_id integer [not null, ref: > products.id]
+  quantidade integer [not null]
+  preco_unitario numeric(12,2) [not null]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}

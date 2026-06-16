@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#f8fafc"/>
+  <text x="600" y="45" text-anchor="middle" font-family="Arial" font-size="28" font-weight="700" fill="#0f172a">Diagrama ER - Plataforma de Gestão de Pedidos de Compras</text>
+
+  <defs>
+    <style>
+      .box { fill: #ffffff; stroke: #2563eb; stroke-width: 2; rx: 14; }
+      .title { fill: #1d4ed8; font: 700 18px Arial; }
+      .field { fill: #0f172a; font: 14px Arial; }
+      .pk { fill: #047857; font: 700 14px Arial; }
+      .fk { fill: #b45309; font: 700 14px Arial; }
+      .line { stroke: #334155; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .label { fill: #334155; font: 13px Arial; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155" />
+    </marker>
+  </defs>
+
+  <rect class="box" x="70" y="110" width="245" height="185"/>
+  <text class="title" x="95" y="145">users</text>
+  <text class="pk" x="95" y="175">PK id</text>
+  <text class="field" x="95" y="200">nome</text>
+  <text class="field" x="95" y="225">email</text>
+  <text class="field" x="95" y="250">departamento</text>
+  <text class="field" x="95" y="275">created_at</text>
+
+  <rect class="box" x="70" y="430" width="245" height="205"/>
+  <text class="title" x="95" y="465">suppliers</text>
+  <text class="pk" x="95" y="495">PK id</text>
+  <text class="field" x="95" y="520">nome</text>
+  <text class="field" x="95" y="545">email</text>
+  <text class="field" x="95" y="570">telefone</text>
+  <text class="field" x="95" y="595">endereco</text>
+  <text class="field" x="95" y="620">created_at</text>
+
+  <rect class="box" x="470" y="95" width="270" height="245"/>
+  <text class="title" x="495" y="130">purchase_orders</text>
+  <text class="pk" x="495" y="160">PK id</text>
+  <text class="fk" x="495" y="185">FK user_id</text>
+  <text class="fk" x="495" y="210">FK supplier_id</text>
+  <text class="field" x="495" y="235">data_pedido</text>
+  <text class="field" x="495" y="260">status</text>
+  <text class="field" x="495" y="285">observacoes</text>
+  <text class="field" x="495" y="310">created_at / updated_at</text>
+
+  <rect class="box" x="470" y="465" width="270" height="205"/>
+  <text class="title" x="495" y="500">products</text>
+  <text class="pk" x="495" y="530">PK id</text>
+  <text class="field" x="495" y="555">nome</text>
+  <text class="field" x="495" y="580">descricao</text>
+  <text class="field" x="495" y="605">preco_unitario</text>
+  <text class="field" x="495" y="630">estoque</text>
+  <text class="fk" x="495" y="655">FK supplier_id</text>
+
+  <rect class="box" x="880" y="260" width="260" height="225"/>
+  <text class="title" x="905" y="295">purchase_order_items</text>
+  <text class="pk" x="905" y="325">PK id</text>
+  <text class="fk" x="905" y="350">FK purchase_order_id</text>
+  <text class="fk" x="905" y="375">FK product_id</text>
+  <text class="field" x="905" y="400">quantidade</text>
+  <text class="field" x="905" y="425">preco_unitario</text>
+  <text class="field" x="905" y="450">created_at</text>
+
+  <path class="line" d="M315 205 C380 205, 405 205, 470 205"/>
+  <text class="label" x="345" y="190">1 cria N</text>
+
+  <path class="line" d="M315 515 C380 515, 405 565, 470 565"/>
+  <text class="label" x="335" y="540">1 fornece N</text>
+
+  <path class="line" d="M315 475 C405 430, 415 250, 470 230"/>
+  <text class="label" x="340" y="430">1 recebe N</text>
+
+  <path class="line" d="M740 235 C805 245, 830 305, 880 335"/>
+  <text class="label" x="780" y="270">1 contém N</text>
+
+  <path class="line" d="M740 575 C815 545, 825 430, 880 390"/>
+  <text class="label" x="780" y="535">1 aparece em N</text>
+</svg>
